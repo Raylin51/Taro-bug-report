@@ -2,3 +2,8 @@
   flex-direction: column;
   width: 100%;
 }
+
+.text {
+  color: red;
+  color: var(--text);
+}

@@ -1,3 +1,10 @@
+
+declare module 'csstype' {
+  interface Properties {
+    [index: string]: any;
+  }
+}
+
 declare module "*.png";
 declare module "*.gif";
 declare module "*.jpg";
