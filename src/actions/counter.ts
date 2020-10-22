@@ -20,8 +20,9 @@ export const minus = () => {
 export const getTheme = () => {
   return async (dispatch: Dispatch) => {
     const res = await Taro.request({
-      url: 'http://127.0.0.1:9527/api/theme',
+      url: 'http://192.168.10.150:9527/api/theme',
       method: 'GET',
+      mode: 'cors'
     })
     dispatch({
       type: GETTHEME,

@@ -4,7 +4,7 @@ const INITIAL_STATE = {
   num: 0,
   theme: {
     primary: '#fff',
-    linear: '#fff',
+    liner: '#fff',
     red: '#fff',
     blue: '#fff',
   }

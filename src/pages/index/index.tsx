@@ -38,6 +38,7 @@ type PageState = {}
 type IProps = PageStateProps & PageDispatchProps & PageOwnProps
 
 interface Index {
+  text: React.RefObject<HTMLParagraphElement>
   props: IProps;
 }
 
@@ -62,12 +63,21 @@ const PText = styled(Text)<{color: string}>`
   }
 }))
 class Index extends Component {
+  constructor(props) {
+    super(props)
+    this.text = React.createRef()
+  }
   componentDidMount () {
     this.props.getTheme()
   }
 
   componentWillReceiveProps (nextProps) {
     console.log(this.props, nextProps)
+  }
+
+  componentDidUpdate(preProps: IProps) {
+    console.log(this.props.counter.theme)
+    console.log(preProps.counter.theme)
   }
 
   componentWillUnmount () { }
@@ -77,13 +87,18 @@ class Index extends Component {
   componentDidHide () { }
 
   render () {
+    const style = {
+      fontWeight: 600,
+      '--test': 'blue',
+      color: 'var(--test)',
+    } as React.CSSProperties
     return (
       <View className='index'>
         <Button className='add_btn' onClick={this.props.add}>+</Button>
         <Button className='dec_btn' onClick={this.props.dec}>-</Button>
         <Button className='dec_btn' onClick={this.props.asyncAdd}>async</Button>
         <View><Text>{this.props.counter.num}</Text></View>
-        <View><Text className='text' style={{'--text': this.props.counter.theme.red}}>Hello, World</Text></View>
+        <View><Text className='text' style={style}>Hello, World</Text></View>
       </View>
     )
   }

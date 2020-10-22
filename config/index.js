@@ -19,7 +19,8 @@ const config = {
           red: '#ffc0cb',
           blue: '#2685c4'
         }
-      }
+      },
+      host: '192.168.10.150'
     }],
   ],
   defineConstants: {
@@ -67,6 +68,16 @@ const config = {
   h5: {
     publicPath: '/',
     staticDirectory: 'static',
+    webpackChain(chain, webpack) {
+      // linaria/loader 选项详见 https://github.com/callstack/linaria/blob/master/docs/BUNDLERS_INTEGRATION.md#webpack
+      chain.module
+        .rule('script')
+        .use('linariaLoader')
+        .loader('linaria/loader')
+        .options({
+          sourceMap: process.env.NODE_ENV !== 'production',
+        })
+    },
     postcss: {
       autoprefixer: {
         enable: true,
